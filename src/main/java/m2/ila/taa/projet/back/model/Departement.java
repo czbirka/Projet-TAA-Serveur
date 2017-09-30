@@ -30,6 +30,13 @@ public class Departement {
 	private Region region;
 	private List<Lieu> lieux = new ArrayList<Lieu>();
 
+	public Departement() {
+	}
+
+	public Departement(String nom) {
+		this.nom = nom;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getId() {
@@ -49,7 +56,7 @@ public class Departement {
 	}
 
 	@ManyToOne
-	@JsonBackReference
+	// @JsonBackReference
 	public Region getRegion() {
 		return region;
 	}
@@ -58,8 +65,9 @@ public class Departement {
 		this.region = region;
 	}
 
-	@OneToMany(mappedBy="departement", cascade={CascadeType.PERSIST,CascadeType.MERGE})
-	@JsonManagedReference
+	//@OneToMany(mappedBy = "departement", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	//@JsonManagedReference
+	@OneToMany(mappedBy = "departement", cascade = CascadeType.ALL)
 	public List<Lieu> getLieux() {
 		return lieux;
 	}

@@ -1,4 +1,9 @@
 .classpath
 .project
 .settings
+/target
+persistenc*
+target
+.idea
+taa.projet.back.iml
 

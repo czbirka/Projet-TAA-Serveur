@@ -9,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -67,6 +69,8 @@ public class Lieu {
 		this.longitude = longitude;
 	}
 
+	@ManyToOne
+	//@JsonBackReference
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -75,7 +79,8 @@ public class Lieu {
 		this.departement = departement;
 	}
 
-	@ManyToMany(mappedBy="lieux")
+	@ManyToMany(mappedBy="lieux", cascade = CascadeType.ALL)
+	@JsonIgnore
 	public List<User> getUsers() {
 		return users;
 	}
@@ -84,7 +89,7 @@ public class Lieu {
 		this.users = users;
 	}
 
-	@ManyToMany(mappedBy="lieux", cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@ManyToMany(mappedBy="lieux", cascade = CascadeType.ALL)
 	@JsonIgnore
 	public List<Activite> getActivites() {
 		return activites;

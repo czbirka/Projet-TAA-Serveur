@@ -27,6 +27,14 @@ public class Region {
 	private String nom;
 
 	private List<Departement> departements = new ArrayList<Departement>();
+	
+	public Region() {
+		
+	}
+
+	public Region(String nom) {
+		this.nom = nom;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,8 +54,10 @@ public class Region {
 		this.nom = nom;
 	}
 
-	@OneToMany(mappedBy="region", cascade={CascadeType.PERSIST,CascadeType.MERGE})
-	@JsonManagedReference
+	
+	//@OneToMany(mappedBy="region", cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	//@JsonManagedReference
+	@OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
 	public List<Departement> getDepartements() {
 		return departements;
 	}
@@ -56,6 +66,8 @@ public class Region {
 		this.departements = departements;
 	}
 	
-	
+	public void addDepartement(Departement departement) {
+		this.getDepartements().add(departement);
+	}
 	
 }

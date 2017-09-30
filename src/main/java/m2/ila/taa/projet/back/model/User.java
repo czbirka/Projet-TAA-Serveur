@@ -30,6 +30,10 @@ public class User {
 
 	private List<Activite> activites = new ArrayList<Activite>();
 	private List<Lieu> lieux = new ArrayList<Lieu>();
+	
+	public User() {
+		
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -89,6 +93,14 @@ public class User {
 
 	public void setLieux(List<Lieu> lieux) {
 		this.lieux = lieux;
+	}
+	
+	public void addActivite(Activite activite) {
+		this.getActivites().add(activite);
+	}
+	
+	public void addLieu(Lieu lieu) {
+		this.getLieux().add(lieu);
 	}
 
 }
